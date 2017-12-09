@@ -11,6 +11,7 @@
   <objects name="objects">
     <object>objects\Manager</object>
     <object>objects\obj_Text</object>
+    <object>objects\obj_Message</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_Main</room>

@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>Manager</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,11 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>txt[0]=""
-currentTxt=0
-
-
-letter=0
+            <string>msg=""
 </string>
           </argument>
         </arguments>
@@ -52,9 +48,8 @@ letter=0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (currentTxt&lt;array_length_1d(txt)&amp;&amp;letter&gt;=string_length(txt[currentTxt])){
-    currentTxt++
-    letter=0
+            <string>if instance_exists(obj_Text) with obj_Text{
+    txt[array_length_1d(txt)]=other.msg
 }
 </string>
           </argument>
