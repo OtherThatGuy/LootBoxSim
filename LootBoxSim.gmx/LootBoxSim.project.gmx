@@ -10,7 +10,11 @@
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\Manager</object>
+    <object>objects\obj_Text</object>
   </objects>
+  <rooms name="rooms">
+    <room>rooms\room_Main</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
