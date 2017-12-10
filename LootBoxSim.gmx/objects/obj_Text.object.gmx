@@ -26,10 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>txt[0]=""
+
 currentTxt=0
 
-
 letter=0
+
+display_set_gui_size(640,480)
 </string>
           </argument>
         </arguments>
@@ -52,10 +54,44 @@ letter=0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (currentTxt&lt;array_length_1d(txt)&amp;&amp;letter&gt;=string_length(txt[currentTxt])){
+            <string>if (currentTxt&lt;array_length_1d(txt)-1&amp;&amp;letter&gt;=string_length(txt[currentTxt])&amp;&amp;!instance_exists(obj_Input)){
     currentTxt++
     letter=0
 }
+
+
+if(letter&lt;string_length(txt[currentTxt]))letter++
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_color(c_white)
+
+for(i=0;i&lt;currentTxt;i++){
+    draw_text(12,12*i,txt[i])
+}
+draw_text(12,12*i,string_copy(txt[currentTxt],1,letter))
+
+
+draw_circle(mouse_x,mouse_y,8,1)
 </string>
           </argument>
         </arguments>

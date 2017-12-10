@@ -8,10 +8,14 @@
   <sprites name="sprites"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <fonts name="fonts">
+    <font>fonts\font_Default</font>
+  </fonts>
   <objects name="objects">
     <object>objects\Manager</object>
     <object>objects\obj_Text</object>
     <object>objects\obj_Message</object>
+    <object>objects\obj_Input</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_Main</room>
