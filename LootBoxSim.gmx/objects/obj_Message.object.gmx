@@ -48,7 +48,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_exists(obj_Text)&amp;&amp;!instance_exists(obj_Input){
+            <string>if instance_exists(obj_Text){
     with obj_Text{
         txt[array_length_1d(txt)]=other.msg
     }

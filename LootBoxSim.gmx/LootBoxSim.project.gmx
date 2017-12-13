@@ -8,6 +8,10 @@
   <sprites name="sprites"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_Synonym.gml</script>
+    <script>scripts\message.gml</script>
+  </scripts>
   <fonts name="fonts">
     <font>fonts\font_Default</font>
   </fonts>
@@ -16,7 +20,9 @@
     <object>objects\obj_Text</object>
     <object>objects\obj_Message</object>
     <object>objects\obj_Input</object>
+    <object>objects\obj_TextMap</object>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\room_Main</room>
   </rooms>

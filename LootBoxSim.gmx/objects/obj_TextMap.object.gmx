@@ -25,12 +25,24 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_number(obj_Input)&gt;1 instance_destroy()
+            <string>spot[0,0]="Top Left"
+spot[0,1]="Top Mid"
+spot[0,2]="Top Right"
 
-keyboard_string=""
+spot[1,0]="Mid Left"
+spot[1,1]="Mid Mid"
+spot[1,2]="Mid Right"
+
+spot[2,0]="Bot Left"
+spot[2,1]="Bot Mid"
+spot[2,2]="Bot Right"
+
+lastx=1
+lasty=1
+curx=1
+cury=1
 
 global.input=""
-input=""
 </string>
           </argument>
         </arguments>
@@ -53,36 +65,40 @@ input=""
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>input=keyboard_string
-
-if keyboard_check_pressed(vk_enter){
-    message("&gt;"+input)
-    global.input=input
-    instance_destroy()
+            <string>if global.input!=""{
+    global.input=scr_Synonym(global.input)
+    
+    lastx=curx
+    lasty=cury
+    
+    if(string_copy(global.input,1,2)="go"){
+        var movex=0
+        var movey=0
+        if string_copy(global.input,3,1)="n" movey=-1
+        if string_copy(global.input,3,1)="s" movey=1
+        if string_copy(global.input,3,1)="w" movex=-1
+        if string_copy(global.input,3,1)="e" movex=1
+        curx+=movex
+        cury+=movey
+        if(curx&lt;0||cury&lt;0||curx&gt;array_length_2d(spot,cury)||cury&gt;array_height_2d(spot)||spot[curx,cury]=""){
+            curx=lastx
+            cury=lasty
+            message("You cannot go that way.")
+        }
+        else message(spot[cury,curx])
+    }
+    else if(global.input="help"){
+        message("Open Lootbox - Open one of your Lootboxes and get the reward inside!")
+        message("Go - Move either North, South, East, or West")
+        message("Grab - Pick up an object")
+        message("Look - Observe your surroundings again")  
+    }
+    else if(global.input="look") message(spot[cury,curx])
+    else message(choose("What?","Huh?","I don't understand.","That doesn't make sense","What do you mean?","That's nonsense.","I don't think I can do that.","I grasp very few concepts, that is not one of them.","Nobody has ever done that, nope.","No.","That's probably impossible","Nah."))
+    
+    
+    global.input=""
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_text(12,456,string("&gt;"+input+"_"))
 </string>
           </argument>
         </arguments>
