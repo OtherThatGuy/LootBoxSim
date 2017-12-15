@@ -72,7 +72,7 @@ break;
             <string>switch(flag) {
 case (flags.directions):
 item_spr = spr_direction;
-message = "You can now move in 4 directions!";
+message_fuck = "You can now move in 4 directions!";
 break;
 
 }
@@ -84,15 +84,15 @@ if (is_itemlootbox == true) {
 switch(item) {
 case 1:
 item_spr = spr_sword;
-message = "You got a blue wooden sword!";
+message_fuck = "You got a blue wooden sword!";
 break;
 case 2:
 item_spr = spr_sword;
-message = "You got a purple wooden sword!";
+message_fuck = "You got a purple wooden sword!";
 break;
 case 3:
 item_spr = spr_sword;
-message = "You got a red wooden sword!";
+message_fuck = "You got a red wooden sword!";
 break;
 
 }
