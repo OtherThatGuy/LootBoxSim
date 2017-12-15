@@ -25,16 +25,24 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>txt[0]=""
+            <string>spot[0,0]="Top Left"
+spot[0,1]="Top Mid"
+spot[0,2]="Top Right"
 
-//for(i=0;i&lt;=64;i++)txt[i]="Test" + string(i)
+spot[1,0]="Mid Left"
+spot[1,1]="Mid Mid"
+spot[1,2]="Mid Right"
 
-currentTxt=0
+spot[2,0]="Bot Left"
+spot[2,1]="Bot Mid"
+spot[2,2]="Bot Right"
 
-letter=0
+lastx=1
+lasty=1
+curx=1
+cury=1
 
-display_set_gui_size(640,480)
-draw_set_font(font_Default)
+global.input=""
 </string>
           </argument>
         </arguments>
@@ -57,52 +65,40 @@ draw_set_font(font_Default)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (currentTxt&lt;array_length_1d(txt)-1&amp;&amp;letter&gt;=string_length(txt[currentTxt])){
-    currentTxt++
-    letter=0
+            <string>if global.input!=""{
+    global.input=scr_Synonym(global.input)
+    
+    lastx=curx
+    lasty=cury
+    
+    if(string_copy(global.input,1,2)="go"){
+        var movex=0
+        var movey=0
+        if string_copy(global.input,3,1)="n" movey=-1
+        if string_copy(global.input,3,1)="s" movey=1
+        if string_copy(global.input,3,1)="w" movex=-1
+        if string_copy(global.input,3,1)="e" movex=1
+        curx+=movex
+        cury+=movey
+        if(curx&lt;0||cury&lt;0||curx&gt;array_length_2d(spot,cury)||cury&gt;array_height_2d(spot)||spot[curx,cury]=""){
+            curx=lastx
+            cury=lasty
+            message("You cannot go that way.")
+        }
+        else message(spot[cury,curx])
+    }
+    else if(global.input="help"){
+        message("Open Lootbox - Open one of your Lootboxes and get the reward inside!")
+        message("Go - Move either North, South, East, or West")
+        message("Grab - Pick up an object")
+        message("Look - Observe your surroundings again")  
+    }
+    else if(global.input="look") message(spot[cury,curx])
+    else message(choose("What?","Huh?","I don't understand.","That doesn't make sense","What do you mean?","That's nonsense.","I don't think I can do that.","I grasp very few concepts, that is not one of them.","Nobody has ever done that, nope.","No.","That's probably impossible","Nah."))
+    
+    
+    global.input=""
 }
-
-
-if (currentTxt=array_length_1d(txt)-1&amp;&amp;letter&gt;=string_length(txt[currentTxt]))&amp;&amp;!instance_exists(obj_Input) instance_create(0,0,obj_Input)
-
-
-if(letter&lt;string_length(txt[currentTxt]))letter++
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_set_color(c_white)
-
-var ydraw=0
-
-while (ydraw+(12*currentTxt)&gt;444)ydraw-=12
-
-for(i=0;i&lt;currentTxt;i++){
-    draw_text(12,ydraw,txt[i])
-    ydraw+=12
-}
-draw_text(12,ydraw,string_copy(txt[currentTxt],1,letter))
-
-
-draw_triangle(mouse_x,mouse_y,mouse_x,mouse_y+16,mouse_x+10,mouse_y+10,1)
 </string>
           </argument>
         </arguments>

@@ -23,16 +23,25 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+<<<<<<< HEAD
     <script>scripts\scr_add_weapon.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_amiga</font>
+=======
+    <script>scripts\scr_Synonym.gml</script>
+    <script>scripts\message.gml</script>
+  </scripts>
+  <fonts name="fonts">
+    <font>fonts\font_Default</font>
+>>>>>>> origin/master
   </fonts>
   <objects name="objects">
     <object>objects\obj_game</object>
     <object>objects\Manager</object>
     <object>objects\obj_Text</object>
     <object>objects\obj_Message</object>
+<<<<<<< HEAD
     <object>objects\obj_1weaponbox</object>
     <object>objects\obj_solid</object>
     <object>objects\obj_fightui</object>
@@ -42,7 +51,12 @@
     <object>objects\obj_store</object>
     <object>objects\obj_glue</object>
     <object>objects\obj_lootbox</object>
+=======
+    <object>objects\obj_Input</object>
+    <object>objects\obj_TextMap</object>
+>>>>>>> origin/master
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\room_lootbox</room>
     <room>rooms\room_store</room>
