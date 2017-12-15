@@ -29,7 +29,7 @@
 
 keyboard_string=""
 
-global.input=""
+//global.input=""
 input=""
 </string>
           </argument>
