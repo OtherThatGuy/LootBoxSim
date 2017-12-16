@@ -32,21 +32,25 @@
     <font>fonts\font_Default</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_game</object>
     <object>objects\Manager</object>
-    <object>objects\obj_Text</object>
-    <object>objects\obj_Message</object>
-    <object>objects\obj_1weaponbox</object>
-    <object>objects\obj_solid</object>
-    <object>objects\obj_fightui</object>
-    <object>objects\obj_player</object>
-    <object>objects\obj_enemy</object>
-    <object>objects\obj_inventory</object>
-    <object>objects\obj_store</object>
-    <object>objects\obj_glue</object>
-    <object>objects\obj_lootbox</object>
-    <object>objects\obj_Input</object>
-    <object>objects\obj_TextMap</object>
+    <objects name="Text">
+      <object>objects\obj_Text</object>
+      <object>objects\obj_Message</object>
+      <object>objects\obj_Input</object>
+      <object>objects\obj_TextMap</object>
+    </objects>
+    <objects name="2D">
+      <object>objects\obj_game</object>
+      <object>objects\obj_lootbox</object>
+      <object>objects\obj_glue</object>
+      <object>objects\obj_store</object>
+      <object>objects\obj_inventory</object>
+      <object>objects\obj_enemy</object>
+      <object>objects\obj_player</object>
+      <object>objects\obj_fightui</object>
+      <object>objects\obj_solid</object>
+      <object>objects\obj_1weaponbox</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_Main</room>
