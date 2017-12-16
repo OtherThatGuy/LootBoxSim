@@ -22,7 +22,6 @@
     <object>objects\obj_Input</object>
     <object>objects\obj_TextMap</object>
   </objects>
-  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\room_Main</room>
   </rooms>

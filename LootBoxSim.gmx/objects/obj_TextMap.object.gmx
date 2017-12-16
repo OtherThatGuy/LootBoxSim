@@ -25,24 +25,46 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spot[0,0]="Top Left"
-spot[0,1]="Top Mid"
-spot[0,2]="Top Right"
+            <string>
+for(u=0;u&lt;=5;u++){
+    for(i=0;i&lt;=5;i++){
+        spot[u,i]=""
+    }
+}
 
-spot[1,0]="Mid Left"
-spot[1,1]="Mid Mid"
-spot[1,2]="Mid Right"
 
-spot[2,0]="Bot Left"
-spot[2,1]="Bot Mid"
-spot[2,2]="Bot Right"
+curx=2
+cury=2
 
-lastx=1
-lasty=1
-curx=1
-cury=1
+lastx=curx
+lasty=cury
 
-global.input=""
+global.input="look"
+
+for(i=0;i&lt;4;i++)move[i]=false
+
+crates=0
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>spot[2,2]="You are standing in a forest, paths winding North, South, East, and West of you."
 </string>
           </argument>
         </arguments>
@@ -74,10 +96,22 @@ global.input=""
     if(string_copy(global.input,1,2)="go"){
         var movex=0
         var movey=0
-        if string_copy(global.input,3,1)="n" movey=-1
-        if string_copy(global.input,3,1)="s" movey=1
-        if string_copy(global.input,3,1)="w" movex=-1
-        if string_copy(global.input,3,1)="e" movex=1
+        if string_copy(global.input,3,1)="n"{
+            if move[0] movey=-1
+            else message("You have not unlocked the ability to move North yet.")
+        }
+        if string_copy(global.input,3,1)="s"{
+            if move[1] movey=1
+            else message("You have not unlocked the ability to move South yet.")
+        }
+        if string_copy(global.input,3,1)="w"{
+            if move[2] movex=-1
+            else message("You have not unlocked the ability to move West yet.")
+        }
+        if string_copy(global.input,3,1)="e"{
+            if movee[3] movex=1
+            else message("You have not unlocked the ability to move East yet.")
+        }
         curx+=movex
         cury+=movey
         if(curx&lt;0||cury&lt;0||curx&gt;array_length_2d(spot,cury)||cury&gt;array_height_2d(spot)||spot[curx,cury]=""){
