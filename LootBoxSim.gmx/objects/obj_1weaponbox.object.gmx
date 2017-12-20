@@ -48,6 +48,9 @@ break;
 }
 }
 
+hh = window_get_width();
+vv = window_get_height();
+
 </string>
           </argument>
         </arguments>
@@ -74,6 +77,26 @@ break;
 case (flags.directions):
 item_spr = spr_direction;
 message_fuck = "You can now move in 4 directions!";
+break;
+case (flags.old_photo):
+item_spr = spr_direction;
+message_fuck = "You got an old photo.";
+break;
+case (flags.casino_key):
+item_spr = spr_direction;
+message_fuck = "You got the key to the casino!";
+break;
+case (flags.basement_key):
+item_spr = spr_direction;
+message_fuck = "You got the key to the basement.";
+break;
+case (flags.map):
+item_spr = spr_direction;
+message_fuck = "You got a map!";
+break;
+case (flags.companion):
+item_spr = spr_direction;
+message_fuck = "You got a companion! talk to him by using the command " + "talk companion";
 break;
 
 }
@@ -132,6 +155,21 @@ switch(flag){
 case(flags.directions):
 global.directions = true;
 break;
+case(flags.old_photo):
+global.old_photo = true;
+break;
+case(flags.casino_key):
+global.casino_key = true;
+break;
+case(flags.companion):
+global.companion = true;
+break;
+case(flags.map):
+global.map = true;
+break;
+case(flags.basement_key):
+global.basement_key = true;
+break;
 
 }
 } else {
@@ -145,7 +183,7 @@ scr_add_weapon(item);
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -162,16 +200,20 @@ scr_add_weapon(item);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(font_amiga);
-draw_set_halign(fa_center);
+            <string>draw_set_halign(fa_center);
 draw_set_valign(fa_center);
+draw_set_alpha(0.5);
+draw_rectangle_colour(0,0,room_width,room_height,c_black,c_black,c_black,c_black,false);
+draw_set_alpha(1);
+draw_set_font(font_Default);
+
 
 if (lootbox_opened == false) {
-draw_text(room_width / 2, room_height / 7, cur_msg);
-draw_sprite_ext(spr_lootbox,0,room_width / 2, room_height / 2, lootbox_size, lootbox_size, 0, c_white,1);
+draw_text(hh / 2, vv / 7, cur_msg);
+draw_sprite_ext(spr_lootbox,0,hh / 2, vv / 2, lootbox_size, lootbox_size, 0, c_white,1);
 } else {
-  draw_text_colour(room_width / 2, room_height / 7, message_fuck,c_yellow,c_yellow,c_yellow,c_yellow,1);
- draw_sprite(item_spr,item,room_width / 2, room_height / 2);
+  draw_text_colour(hh / 2, vv / 7, message_fuck,c_yellow,c_yellow,c_yellow,c_yellow,1);
+ draw_sprite(item_spr,item,hh / 2, vv / 2);
 }
 </string>
           </argument>

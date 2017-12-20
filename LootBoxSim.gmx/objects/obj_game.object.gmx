@@ -27,7 +27,12 @@
             <kind>1</kind>
             <string>//enums
 enum flags {
- directions = 01
+ directions = 01,
+ casino_key = 02,
+ old_photo = 03,
+ basement_key = 04,
+ companion = 05,
+ map = 06
 }
 
 //weapon array
@@ -37,10 +42,19 @@ enum flags {
 [*,2] = weapon speed
 */
 
+global.text_color = c_white;
+
 //flags
-global.directions = false;
+global.directions = true;
+global.casino_key = false;
+global.old_photo = false;
+global.companion = false;
+global.map = false;
+global.basement_key = false;
 
+global.glue_bottles = 0;
 
+/*
 //player health
 global.player_hp = 100;
 global.max_player_hp = 100;
@@ -90,6 +104,32 @@ global.player_weapon[6,0] = "Red axe";
 global.player_weapon[6,1] = 15;
 global.player_weapon[6,2] = 4;
 global.player_weapon[6,3] = false;
+*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.text_color == 0) {
+ global.text_color = c_white;
+}
 </string>
           </argument>
         </arguments>
@@ -112,53 +152,20 @@ global.player_weapon[6,3] = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(10,10,string(global.current_weapon));
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="115">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>room_goto(room_battle);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="114">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>room_goto(room_inventory);
+            <string>//draw_text(10,10,string(global.current_weapon));
+var textmap = instance_nearest(0,0,obj_TextMap);
+
+if (global.map == true) {
+ for(u=0;u&lt;=3;u++){
+    for(i=0;i&lt;=2;i++){
+    if (textmap.curx = i and textmap.cury = u)  {
+     draw_sprite(spr_mapsquare,1,32 + (16 * i), room_height - 200 + (16 * u));
+     } else {
+      draw_sprite(spr_mapsquare,0,32 + (16 * i), room_height - 200 + (16 * u));
+     }
+    }
+  }
+}
 </string>
           </argument>
         </arguments>
@@ -181,7 +188,30 @@ global.player_weapon[6,3] = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(0,0,obj_1weaponbox);
+            <string>message("memory leak test.", false);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="112">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>game_restart();
 </string>
           </argument>
         </arguments>

@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>msg="TESTMESSAGE"
+spec=false
 </string>
           </argument>
         </arguments>
@@ -53,7 +54,9 @@
         nextbreak=77
         for(i=77;i&gt;0;i--) if string_char_at(msg,i)!=" "{nextbreak=i-1; i=-1}
         with obj_Text{
-            txt[array_length_1d(txt)]=string_copy(other.msg,1,other.nextbreak)
+            //LEAK: maybe setup a limit to the amount of messages?
+            ds_list_add(txt,string_copy(other.msg,1,other.nextbreak));
+            ds_list_add(spc, other.spec);
         }
         msg=string_delete(msg,1,nextbreak)
     }
