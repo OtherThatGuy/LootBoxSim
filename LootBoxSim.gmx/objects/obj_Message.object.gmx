@@ -52,7 +52,7 @@ spec=false
             <string>if instance_exists(obj_Text){
     while msg!=""{
         nextbreak=77
-        for(i=77;i&gt;0;i--) if string_char_at(msg,i)!=" "{nextbreak=i-1; i=-1}
+        for(i=min(77,string_length(msg)+1);i&gt;0;i--) if string_char_at(msg,i)=" "||i&gt;string_length(msg){nextbreak=i; i=-1}
         with obj_Text{
             //LEAK: maybe setup a limit to the amount of messages?
             ds_list_add(txt,string_copy(other.msg,1,other.nextbreak));

@@ -275,7 +275,7 @@ grid=undefined
 }
 
 if (ds_exists(shop, ds_type_map)) {
-ds_map_empty(shop);
+ds_map_clear(shop);
 ds_map_destroy(shop);
 shop=undefined
 }
