@@ -29,4 +29,26 @@ argument0=string_replace(argument0,"south","s")
 argument0=string_replace(argument0,"left","w")
 argument0=string_replace(argument0,"west","w")
 
+argument0=string_replace(argument0,"speak", "talk");
+argument0=string_replace(argument0,"talkto", "talk");
+
+argument0=string_replace(argument0,"colour", "color");
+
+argument0=string_replace(argument0,"green", string(c_green));
+argument0=string_replace(argument0,"red", string(c_red));
+argument0=string_replace(argument0,"cyan", string(c_aqua));
+argument0=string_replace(argument0,"blue", string(c_blue));
+argument0=string_replace(argument0,"navy", string(c_navy));
+argument0=string_replace(argument0,"maroon", string(c_maroon));
+argument0=string_replace(argument0,"fuchsia", string(c_fuchsia));
+argument0=string_replace(argument0,"gray", string(c_gray));
+argument0=string_replace(argument0,"otherthatguy", string(0218348));
+argument0=string_replace(argument0,"orange", string(c_orange));
+argument0=string_replace(argument0,"white", string(c_white));
+argument0=string_replace(argument0,"purple", string(c_purple));
+argument0=string_replace(argument0,"pixel", string(95485745));
+argument0=string_replace(argument0,"punstar", string(3849798347));
+argument0=string_replace(argument0,"osmium", string(1273612683));
+
+
 return argument0

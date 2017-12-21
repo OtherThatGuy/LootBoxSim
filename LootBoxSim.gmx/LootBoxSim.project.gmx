@@ -15,11 +15,15 @@
     <sprite>sprites\spr_staminabar</sprite>
     <sprite>sprites\spr_sword</sprite>
     <sprite>sprites\spr_glue</sprite>
+<<<<<<< HEAD
     <sprites name="3D">
       <sprite>sprites\spr_ceiling</sprite>
       <sprite>sprites\spr_3DPlayer</sprite>
       <sprite>sprites\spr_Slime</sprite>
     </sprites>
+=======
+    <sprite>sprites\spr_mapsquare</sprite>
+>>>>>>> dea3ad0f23b0155ad9a4e4796d631a3157fc27ca
   </sprites>
   <backgrounds name="background">
     <background>background\bg_village1</background>
@@ -31,6 +35,8 @@
     <script>scripts\scr_add_weapon.gml</script>
     <script>scripts\scr_Synonym.gml</script>
     <script>scripts\message.gml</script>
+    <script>scripts\scr_talk_grid.gml</script>
+    <script>scripts\scr_talk_grid_del.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_amiga</font>
@@ -48,11 +54,8 @@
       <object>objects\obj_game</object>
       <object>objects\obj_lootbox</object>
       <object>objects\obj_glue</object>
-      <object>objects\obj_store</object>
-      <object>objects\obj_inventory</object>
       <object>objects\obj_enemy</object>
       <object>objects\obj_player</object>
-      <object>objects\obj_fightui</object>
       <object>objects\obj_solid</object>
       <object>objects\obj_1weaponbox</object>
     </objects>
@@ -67,9 +70,6 @@
     <room>rooms\room_3D</room>
     <room>rooms\room_Main</room>
     <room>rooms\room_lootbox</room>
-    <room>rooms\room_store</room>
-    <room>rooms\room_inventory</room>
-    <room>rooms\room_village</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

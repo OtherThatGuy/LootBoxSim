@@ -25,16 +25,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>txt[0]=""
+            <string>//LEAK: these arrays are probably causing a leak, replace them for ds_lists
+txt = ds_list_create();
+spc = ds_list_create();
+
+ds_list_add(txt,"");
+ds_list_add(spc,false);
 
 //for(i=0;i&lt;=64;i++)txt[i]="Test" + string(i)
 
 currentTxt=0
-
 letter=0
 
 display_set_gui_size(640,480)
 draw_set_font(font_Default)
+
+
 </string>
           </argument>
         </arguments>
@@ -57,16 +63,52 @@ draw_set_font(font_Default)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (currentTxt&lt;array_length_1d(txt)-1&amp;&amp;letter&gt;=string_length(txt[currentTxt])){
+            <string>if (currentTxt&lt;ds_list_size(txt)-1&amp;&amp;letter&gt;=string_length(txt[| currentTxt])){
     currentTxt++
     letter=0
 }
 
 
-if (currentTxt=array_length_1d(txt)-1&amp;&amp;letter&gt;=string_length(txt[currentTxt]))&amp;&amp;!instance_exists(obj_Input) instance_create(0,0,obj_Input)
+if (currentTxt=ds_list_size(txt)-1&amp;&amp;letter&gt;=string_length(txt[| currentTxt]))&amp;&amp;!instance_exists(obj_Input) instance_create(0,0,obj_Input)
 
 
-if(letter&lt;string_length(txt[currentTxt]))letter++
+if(letter&lt;string_length(txt[| currentTxt]))letter++
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//LEAK: deallocating txt and spc
+if (ds_exists(txt, ds_type_list)) {
+ ds_list_empty(txt);
+ ds_list_destroy(txt);
+ txt=undefined
+}
+
+if (ds_exists(spc, ds_type_list)) {
+ ds_list_empty(spc);
+ ds_list_destroy(spc);
+ spc=undefined
+}
+
+instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -89,19 +131,33 @@ if(letter&lt;string_length(txt[currentTxt]))letter++
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_white)
-
+            <string>draw_set_font(font_Default);
+draw_set_halign(fa_left);
+draw_set_valign(fa_left);
 var ydraw=0
+var color=global.text_color
+
 
 while (ydraw+(12*currentTxt)&gt;444)ydraw-=12
 
 for(i=0;i&lt;currentTxt;i++){
-    draw_text(12,ydraw,txt[i])
+    if (spc[| i] == true) {
+     draw_set_color(merge_colour(c_yellow,color,0.5));
+    } else {
+     draw_set_color(color);
+    }
+    draw_text(12,ydraw,txt[| i])
     ydraw+=12
 }
-draw_text(12,ydraw,string_copy(txt[currentTxt],1,letter))
 
+if (spc[| currentTxt] == true) {
+ draw_set_colour(merge_colour(c_yellow,color,0.5));
+} else {
+ draw_set_colour(color);
+}
+draw_text(12,ydraw,string_copy(txt[| currentTxt],1,letter))
 
+draw_set_colour(color);
 draw_triangle(mouse_x,mouse_y,mouse_x,mouse_y+16,mouse_x+10,mouse_y+10,1)
 </string>
           </argument>

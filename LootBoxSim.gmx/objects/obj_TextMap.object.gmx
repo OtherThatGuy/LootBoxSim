@@ -25,16 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-for(u=0;u&lt;=5;u++){
-    for(i=0;i&lt;=5;i++){
+            <string>message("Type 'Help' for a list of commands.", true);
+randomize();
+for(u=0;u&lt;=2;u++){
+    for(i=0;i&lt;=1;i++){
         spot[u,i]=""
     }
 }
 
 
-curx=2
-cury=2
+curx=1
+cury=3
 
 lastx=curx
 lasty=cury
@@ -64,8 +65,64 @@ crates=0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spot[2,2]="You are standing in a forest, paths winding North, South, East, and West of you."
+            <string>///location text
+
+spot[3,0]="You see a christmas tree, it's lacking a lot of decorations, below it you see a cardboard box, it doesn't look like a lootbox... You see a shop to your north and a street to your east."
+spot[3,1]="You are standing in a street of what appears to be a village, you see a lootbox, and you see paths to your east, west and north."
+spot[3,2]="You see a gate with a big lock on it, it seems to be the exit of the village, you can probably ask the locals to open the gate. You see a hotel to your north and a street to your west."
+
+spot[2,0]="You enter the shop, which appears to be selling bottles of glue. maybe you could talk to the shopkeeper... You see a christmas tree to your south and a street to your east."
+spot[2,1]="You are standing in a street, you see a shop to your west and a hotel to your east."
+spot[2,2]="You enter the hotel, you see a man behind the counter, maybe you could talk to him. You see a gate to your south, a street to your west and a street to your north"
+
+spot[1,0]="You are standing in a street, you can see an old house to your north, a shop to your south and another street to your east."
+spot[1,1]="You are standing in a street, you see a building to your north called the " + "'Stuck Together Casino'" + ", you see a street to your east, a street to your west and a street to your south."
+spot[1,2]="You are in a street infront of a building which appears to be some sort of factory, you see a street to your west and a hotel to your south."
+
+spot[0,0]="You enter the old house, you can see a basement which appears to be locked."
+spot[0,1]="You enter the casino lobby, the door is locked. maybe you could use a key to open it."
+spot[0,2]="You enter the big building, it appears to be a glue factory, you see a man standing behind a desk, maybe you could talk to him."
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>scr_talk_grid</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -87,52 +144,172 @@ crates=0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.input!=""{
-    global.input=scr_Synonym(global.input)
+            <string>///Did you unlock directions?
+if (global.directions == true) {
+ move[0] = true;
+ move[1] = true;
+ move[2] = true;
+ move[3] = true;
+} else {
+ move[0] = false;
+ move[1] = false;
+ move[2] = false;
+ move[3] = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var input = global.input
+
+if input!=""{
+    input=scr_Synonym(input)
     
     lastx=curx
     lasty=cury
     
-    if(string_copy(global.input,1,2)="go"){
+    if(string_copy(input,1,2)="go"){
         var movex=0
         var movey=0
-        if string_copy(global.input,3,1)="n"{
+        if string_copy(input,3,1)="n"{
             if move[0] movey=-1
-            else message("You have not unlocked the ability to move North yet.")
+            else message("You have not unlocked the ability to move North yet.",false)
         }
-        if string_copy(global.input,3,1)="s"{
+        if string_copy(input,3,1)="s"{
             if move[1] movey=1
-            else message("You have not unlocked the ability to move South yet.")
+            else message("You have not unlocked the ability to move South yet.",false)
         }
-        if string_copy(global.input,3,1)="w"{
+        if string_copy(input,3,1)="w"{
             if move[2] movex=-1
-            else message("You have not unlocked the ability to move West yet.")
+            else message("You have not unlocked the ability to move West yet.",false)
         }
-        if string_copy(global.input,3,1)="e"{
-            if movee[3] movex=1
-            else message("You have not unlocked the ability to move East yet.")
+        if string_copy(input,3,1)="e"{
+            if move[3] movex=1
+            else message("You have not unlocked the ability to move East yet.",false)
         }
         curx+=movex
         cury+=movey
-        if(curx&lt;0||cury&lt;0||curx&gt;array_length_2d(spot,cury)||cury&gt;array_height_2d(spot)||spot[curx,cury]=""){
+        if(curx&lt;0||cury&lt;0||curx &gt;= array_length_2d(spot,cury)|| cury &gt;= array_height_2d(spot)){
             curx=lastx
             cury=lasty
-            message("You cannot go that way.")
+            message("You cannot go that way.",true)
         }
-        else message(spot[cury,curx])
+        else message(spot[cury,curx],false)
     }
-    else if(global.input="help"){
-        message("Open Lootbox - Open one of your Lootboxes and get the reward inside!")
-        message("Go - Move either North, South, East, or West")
-        message("Grab - Pick up an object")
-        message("Look - Observe your surroundings again")  
+    else if(input="help"){
+        message("Open Lootbox - Open one of your Lootboxes and get the reward inside!",true)
+        message("Go - Move either North, South, East, or West", true)
+        message("Grab - Pick up an object", true)
+        message("Look - Observe your surroundings again", true) 
+        message("Talk - talk to a person", true)
+        message("Color - change the color of the text", true);
     }
-    else if(global.input="look") message(spot[cury,curx])
-    else message(choose("What?","Huh?","I don't understand.","That doesn't make sense","What do you mean?","That's nonsense.","I don't think I can do that.","I grasp very few concepts, that is not one of them.","Nobody has ever done that, nope.","No.","That's probably impossible","Nah."))
+    else if(string_copy(input,1,5) = "color"){
+     global.text_color = real(string_copy(input,6,9));
+    }else if (string_copy(input,1,4) = "talk") {
+     var name = string_copy(input,5,10);
+     var map = grid[# curx, cury];
+     
+     if (!is_undefined(map[? name])) {
+      message(map[? name], false);
+     } else {
+      message("That person isn't here!", true);
+     }
+     
+    }
+    else if(input="look") message(spot[cury,curx], false)
+    else if(input="fuck") message(choose("Hey, that's rude!", "Watch your language!", "No swearing on my christian game.", "At least invite me to dinner first!"), true);
+    else if(input="piss") message("Uhm...no?", true); 
+    else message(choose("What?","Huh?","I don't understand.","That doesn't make sense","What do you mean?","That's nonsense.","I don't think I can do that.","I grasp very few concepts, that is not one of them.","Nobody has ever done that, nope.","No.","That's probably impossible","Nah."),true);
     
     
     global.input=""
+
 }
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//LEAK: deallocating grids and arrays
+if (ds_exists(grid, ds_type_grid)) {
+ds_grid_clear(grid, -1);
+ds_grid_destroy(grid);
+grid=undefined
+}
+
+if (ds_exists(shop, ds_type_map)) {
+ds_map_empty(shop);
+ds_map_destroy(shop);
+shop=undefined
+}
+
+spot=0;
+move=0;
+
+instance_destroy();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_text(0,room_height - 24, string(curx));
+draw_text(0,room_height - 12, string(cury));
+
 </string>
           </argument>
         </arguments>
