@@ -15,6 +15,11 @@
     <sprite>sprites\spr_staminabar</sprite>
     <sprite>sprites\spr_sword</sprite>
     <sprite>sprites\spr_glue</sprite>
+    <sprites name="3D">
+      <sprite>sprites\spr_ceiling</sprite>
+      <sprite>sprites\spr_3DPlayer</sprite>
+      <sprite>sprites\spr_Slime</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_village1</background>
@@ -51,8 +56,15 @@
       <object>objects\obj_solid</object>
       <object>objects\obj_1weaponbox</object>
     </objects>
+    <objects name="3D">
+      <object>objects\obj_3DPlayer</object>
+      <object>objects\obj_3DWall</object>
+      <object>objects\obj_ceiling_and_floor</object>
+      <object>objects\obj_3dEnemy</object>
+    </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room_3D</room>
     <room>rooms\room_Main</room>
     <room>rooms\room_lootbox</room>
     <room>rooms\room_store</room>
